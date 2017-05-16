@@ -29,6 +29,7 @@ table thead th {
 }
 
 .table th, .table td {
+  border-top: none;
   vertical-align: middle;
   text-align: center;
 }
@@ -53,4 +54,8 @@ p {
     -ms-transform:scale(1.1);
     -o-transform:scale(1.1);
      transform:scale(1.1);
+}
+
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+   background-color: #e1f7e8;
 }
