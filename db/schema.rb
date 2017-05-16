@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170516180359) do
+ActiveRecord::Schema.define(version: 20170516212834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,26 @@ ActiveRecord::Schema.define(version: 20170516180359) do
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  end
+
+  create_table "sistemas", force: :cascade do |t|
+    t.string "nome"
+    t.string "slug"
+    t.text "descricao"
+    t.string "logradouro"
+    t.string "cidade"
+    t.string "uf"
+    t.string "cep"
+    t.float "latitude"
+    t.float "longitude"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "imagem_file_name"
+    t.string "imagem_content_type"
+    t.integer "imagem_file_size"
+    t.datetime "imagem_updated_at"
+    t.index ["user_id"], name: "index_sistemas_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -48,4 +68,5 @@ ActiveRecord::Schema.define(version: 20170516180359) do
     t.index ["slug"], name: "index_users_on_slug", unique: true
   end
 
+  add_foreign_key "sistemas", "users"
 end

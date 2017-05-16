@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @sistema.nome %>
+</p>
+
+<p>
+  <strong>Slug:</strong>
+  <%= @sistema.slug %>
+</p>
+
+<p>
+  <strong>Descricao:</strong>
+  <%= @sistema.descricao %>
+</p>
+
+<p>
+  <strong>Logradouro:</strong>
+  <%= @sistema.logradouro %>
+</p>
+
+<p>
+  <strong>Cidade:</strong>
+  <%= @sistema.cidade %>
+</p>
+
+<p>
+  <strong>Uf:</strong>
+  <%= @sistema.uf %>
+</p>
+
+<p>
+  <strong>Cep:</strong>
+  <%= @sistema.cep %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @sistema.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @sistema.longitude %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @sistema.user %>
+</p>
+
+<%= link_to 'Edit', edit_sistema_path(@sistema) %> |
+<%= link_to 'Back', sistemas_path %>
