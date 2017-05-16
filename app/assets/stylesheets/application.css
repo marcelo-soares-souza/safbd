@@ -13,3 +13,44 @@
  *= require_tree .
  *= require_self
  */
+
+.starter-template {
+  text-align: center;
+}
+
+.error {
+  border-color: red;
+}
+
+table thead th {
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.table th, .table td {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.btn:visited {
+  color: #fff;
+
+}
+
+#error_explanation {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+p {
+  text-align: justify;
+}
+
+.list:hover img {
+    -webkit-transform:scale(1.1);
+    -moz-transform:scale(1.1);
+    -ms-transform:scale(1.1);
+    -o-transform:scale(1.1);
+     transform:scale(1.1);
+}
