@@ -21,3 +21,4 @@
 *.swp
 /config/database.yml
 /public/system
+/config/initializers/proxy.rb
