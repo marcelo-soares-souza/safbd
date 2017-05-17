@@ -1,0 +1,6 @@
+Geocoder.configure(
+  :http_proxy => "USERNAME:PASSWORD@FIREWALL_ADDRESS:PORT",
+  :https_proxy => "USERNAME:PASSWORD@FIREWALL_ADDRESS:PORT",
+  :timeout => 5 
+)
+

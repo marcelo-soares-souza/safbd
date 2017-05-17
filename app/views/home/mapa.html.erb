@@ -1,0 +1,27 @@
+<style> .container { width: 100%; } </style>
+
+<div id="map"></div>
+<script>
+  $( document ).ready(function() {
+    var map = L.map('map', {zoomControl: false}).setView([-15.77835833463309, -47.88219451904297], 10);
+    var markers = new Array();
+
+    $(window).on("resize", function () { $("#map").height($(window).height() - 60); map.invalidateSize(); }).trigger("resize");
+
+    L.tileLayer('https://a.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: 'Mapas <a href="http://safbd.itbio3.org/" alt="SAFBD" target="_blank">SAFBD</a> - OpenStreetMap', maxZoom: 18,}).addTo(map);
+    L.control.zoom({position:'topright'}).addTo(map);
+
+    <% if @sistemas %>
+      <% @sistemas.each do |sistema| %>
+        <% if sistema.latitude and sistema.longitude %>
+
+         var Icon = L.icon({iconUrl: '<%= image_url "leaflet/images/marker-icon.png" %>'});
+
+          markers["<%= sistema.slug %>"] = L.marker([<%= sistema.latitude %>, <%= sistema.longitude %>], {icon: Icon})
+          markers["<%= sistema.slug %>"].bindPopup('<b><%= link_to sistema.nome, sistema_path(sistema) %></b>');
+          markers["<%= sistema.slug %>"].addTo(map);
+        <% end %>
+      <% end %>
+    <% end %>
+  });
+</script>
