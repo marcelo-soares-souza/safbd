@@ -1,27 +1,41 @@
-<style> .container { width: 100%; } </style>
+  <style> 
+    .container {
+       width: 100%;
+       padding-left: 0px;
+       padding-right: 0px;
+    }
+  </style>
 
-<div id="map"></div>
-<script>
-  $( document ).ready(function() {
-    var map = L.map('map', {zoomControl: false}).setView([-15.77835833463309, -47.88219451904297], 10);
-    var markers = new Array();
+  <div id="map"></div>
 
-    $(window).on("resize", function () { $("#map").height($(window).height() - 60); map.invalidateSize(); }).trigger("resize");
+  <script>
+    $( document ).ready(function() {
+      var map = L.map('map', {zoomControl: false}).setView([-15.77835833463309, -47.88219451904297], 5);
 
-    L.tileLayer('https://a.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: 'Mapas <a href="http://safbd.itbio3.org/" alt="SAFBD" target="_blank">SAFBD</a> - OpenStreetMap', maxZoom: 18,}).addTo(map);
-    L.control.zoom({position:'topright'}).addTo(map);
+      $(window).on("resize", function () { $("#map").height($(window).height() - 60); map.invalidateSize(); }).trigger("resize");
 
-    <% if @sistemas %>
-      <% @sistemas.each do |sistema| %>
-        <% if sistema.latitude and sistema.longitude %>
+      L.tileLayer('https://a.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: 'OpenStreetMap', maxZoom: 18,}).addTo(map);
+      L.control.zoom({position:'topright'}).addTo(map);
 
-         var Icon = L.icon({iconUrl: '<%= image_url "leaflet/images/marker-icon.png" %>'});
+      <% if @sistemas %>
+        var markers = new Array();
+        var Icon = L.icon({
+                            iconUrl: '<%= image_url "leaflet/images/leaf-green.png" %>',
+                            shadowUrl: '<%= image_url "leaflet/images/leaf-shadow.png" %>',
+                            iconSize:     [38, 95],
+                            shadowSize:   [50, 64],
+                            iconAnchor:   [22, 94],
+                            shadowAnchor: [4, 62],
+                            popupAnchor:  [-3, -76]
+                          });
 
-          markers["<%= sistema.slug %>"] = L.marker([<%= sistema.latitude %>, <%= sistema.longitude %>], {icon: Icon})
-          markers["<%= sistema.slug %>"].bindPopup('<b><%= link_to sistema.nome, sistema_path(sistema) %></b>');
-          markers["<%= sistema.slug %>"].addTo(map);
+        <% @sistemas.each do |sistema| %>
+          <% if sistema.latitude and sistema.longitude %>
+            markers["<%= sistema.slug %>"] = L.marker([<%= sistema.latitude %>, <%= sistema.longitude %>], {icon: Icon})
+            markers["<%= sistema.slug %>"].bindPopup('<b><%= link_to sistema.nome, sistema_path(sistema) %></b>');
+            markers["<%= sistema.slug %>"].addTo(map);
+          <% end %>
         <% end %>
       <% end %>
-    <% end %>
-  });
-</script>
+    });
+  </script>
