@@ -10,7 +10,15 @@
 
   <script>
     $( document ).ready(function() {
-      var map = L.map('map', {zoomControl: false}).setView([-15.77835833463309, -47.88219451904297], 5);
+      lat = <%= request.safe_location.latitude %>;
+      lon = <%= request.safe_location.longitude %>;
+
+      if (lat == 0.0 || lon == 0.0) {
+        lat = -15.77835833463309;
+        lon = -47.88219451904297;
+      }
+
+      var map = L.map('map', {zoomControl: false}).setView([lat, lon], 5);
 
       $(window).on("resize", function () { $("#map").height($(window).height() - 60); map.invalidateSize(); }).trigger("resize");
 
