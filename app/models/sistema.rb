@@ -3,13 +3,12 @@ class Sistema < ApplicationRecord
   friendly_id :nome, use: :slugged
 
   validates :nome, :presence => true
-  validates :cidade, :presence => true
-  validates :uf, :presence => true
+  validates :imagem, :presence => true
 
   belongs_to :user
 
-  geocoded_by :localization
-  after_validation :geocode
+  # geocoded_by :localization
+  # after_validation :geocode
 
   has_attached_file :imagem, styles: { medium: "360x360>", thumb: "180x180>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :imagem, content_type: /\Aimage\/.*\z/

@@ -1,6 +1,17 @@
-<h1>Editing Sistema</h1>
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <%= link_to t(:all), sistemas_path, :class => "nav-link" %>
+  </li>
+  <% if user_signed_in? %>
+    <li class="nav-item">
+      <%= link_to t(:new), new_sistema_path, :class => "nav-link" %>
+    </li>
+  <% end %>
+  <li class="nav-item">
+    <%= link_to "Editando #{@sistema.nome}", sistema_path(@sistema), :class => "nav-link active" %>
+  </li>
+</ul>
+
+<br/>
 
 <%= render 'form', sistema: @sistema %>
-
-<%= link_to 'Show', @sistema %> |
-<%= link_to 'Back', sistemas_path %>
