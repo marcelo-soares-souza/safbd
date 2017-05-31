@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170516212834) do
+ActiveRecord::Schema.define(version: 20170531193507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "experimentos", force: :cascade do |t|
+    t.string "nome"
+    t.text "descricao"
+    t.string "slug"
+    t.bigint "sistema_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "imagem_file_name"
+    t.string "imagem_content_type"
+    t.integer "imagem_file_size"
+    t.datetime "imagem_updated_at"
+    t.index ["sistema_id"], name: "index_experimentos_on_sistema_id"
+    t.index ["slug"], name: "index_experimentos_on_slug", unique: true
+  end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
@@ -68,5 +83,6 @@ ActiveRecord::Schema.define(version: 20170516212834) do
     t.index ["slug"], name: "index_users_on_slug", unique: true
   end
 
+  add_foreign_key "experimentos", "sistemas"
   add_foreign_key "sistemas", "users"
 end

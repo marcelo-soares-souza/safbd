@@ -40,7 +40,7 @@
         <% @sistemas.each do |sistema| %>
           <% if sistema.latitude and sistema.longitude %>
             markers["<%= sistema.slug %>"] = L.marker([<%= sistema.latitude %>, <%= sistema.longitude %>], {icon: Icon})
-            markers["<%= sistema.slug %>"].bindPopup('<b><%= link_to sistema.nome, sistema_path(sistema) %></b>');
+            markers["<%= sistema.slug %>"].bindPopup('<b><%= link_to sistema.nome, sistema_path(sistema) %></b><br/>Experimentos Registrados: <%= sistema.experimentos.count %> ');
             markers["<%= sistema.slug %>"].addTo(map);
           <% end %>
         <% end %>

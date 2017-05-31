@@ -20,6 +20,13 @@
       <dt class="col-sm-3"><strong>Nome:</strong></dt>
       <dd class="col-sm-9"><%= @sistema.nome %>&nbsp;</dd>
 
+      <% if @sistema.experimentos.count > 0 %>
+        <dt class="col-sm-3"><strong>Experimentos:</strong></dt>
+        <dd class="col-sm-9">
+         <%= @sistema.experimentos.map {|experimento| link_to experimento.nome, experimento_path(experimento)}.join(", ").html_safe %>&nbsp;
+        </dd>
+      <% end %>
+
       <dt class="col-sm-3"><strong>Logradouro:</strong></dt>
       <dd class="col-sm-9"><%= @sistema.logradouro %>&nbsp;</dd>
 

@@ -1,0 +1,35 @@
+<% if ! @experimentos.empty? %>
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <%= link_to t(:all), experimentos_path, :class => "nav-link active" %>
+  </li>
+  <% if user_signed_in? %>
+    <li class="nav-item">
+      <%= link_to t(:new), new_experimento_path, :class => "nav-link" %>
+    </li>
+  <% end %>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane active"><br/>
+    <table class="table table-responsive">
+      <tbody>
+        <% @experimentos.each_slice(5) do |p| %>
+        <tr>
+          <% p.each do |experimento| %>
+            <td class="list">
+              <%= link_to image_tag(experimento.imagem.url(:thumb), :width => "180"), experimento_path(experimento) %>
+              <br/><br/>
+              <b><%= link_to experimento.nome + " (" + experimento.sistema.nome + ")", experimento_path(experimento) %></b>
+            </td>
+          <% end %>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<% else %>
+  <br/><br/>
+  <h3>Nenhum Registro Encontrado. <%= link_to 'Cadastrar?', new_experimento_path %></h3>
+<% end %>

@@ -17,6 +17,10 @@
             <%= link_to("Sistemas", sistemas_path, :class => "nav-link") %>
           </li>
 
+          <li class="nav-item">
+            <%= link_to("Experimentos", experimentos_path, :class => "nav-link") %>
+          </li>
+
           <% if current_user %>
             <% if current_user.admin? %>
               <li class="nav-item">

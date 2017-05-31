@@ -5,6 +5,7 @@ class Sistema < ApplicationRecord
   validates :nome, :presence => true
   validates :imagem, :presence => true
 
+  has_many :experimentos
   belongs_to :user
 
   # geocoded_by :localization
