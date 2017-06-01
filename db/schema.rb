@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170531193507) do
+ActiveRecord::Schema.define(version: 20170601182452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,21 @@ ActiveRecord::Schema.define(version: 20170531193507) do
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  end
+
+  create_table "plantas", force: :cascade do |t|
+    t.string "nome"
+    t.text "descricao"
+    t.string "slug"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "imagem_file_name"
+    t.string "imagem_content_type"
+    t.integer "imagem_file_size"
+    t.datetime "imagem_updated_at"
+    t.index ["slug"], name: "index_plantas_on_slug", unique: true
+    t.index ["user_id"], name: "index_plantas_on_user_id"
   end
 
   create_table "sistemas", force: :cascade do |t|
@@ -84,5 +99,6 @@ ActiveRecord::Schema.define(version: 20170531193507) do
   end
 
   add_foreign_key "experimentos", "sistemas"
+  add_foreign_key "plantas", "users"
   add_foreign_key "sistemas", "users"
 end

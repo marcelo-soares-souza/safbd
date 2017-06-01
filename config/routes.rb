@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :plantas
   resources :experimentos
   resources :sistemas
   devise_for :users
