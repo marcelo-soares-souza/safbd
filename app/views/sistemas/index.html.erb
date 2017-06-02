@@ -22,7 +22,7 @@
               <br/><br/>
               <b><%= link_to sistema.nome, sistema_path(sistema) %></b>
               <br/>
-              Experimentos: <%= link_to sistema.experimentos.count.to_s, sistema_experimentos_path(sistema) %>
+              <%= link_to 'Experimentos Registrados: ' + sistema.experimentos.count.to_s, sistema_experimentos_path(sistema) %>
             </td>
           <% end %>
         </tr>

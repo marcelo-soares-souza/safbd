@@ -1,12 +1,17 @@
 <% if ! @experimentos.empty? %>
 <ul class="nav nav-tabs">
   <li class="nav-item">
-    <%= link_to t(:all), experimentos_path, :class => "nav-link active" %>
+    <%= link_to t(:all), experimentos_path, :class => "nav-link #{if request.path == "/experimentos" then 'active' end }" %>
   </li>
   <% if user_signed_in? %>
     <li class="nav-item">
       <%= link_to t(:new), new_experimento_path, :class => "nav-link" %>
     </li>
+  <% end %>
+  <% if request.path != "/experimentos" %>
+    <li class="nav-item">
+      <%= link_to 'Experimentos do ' + Sistema.friendly.find(params[:sistema_id]).nome, '#', :class => "nav-link active" %>
+  </li>
   <% end %>
 </ul>
 
@@ -22,7 +27,7 @@
               <br/><br/>
               <b><%= link_to experimento.nome + " (" + experimento.sistema.nome + ")", experimento_path(experimento) %></b>
               <br/>
-              Plantas: <%= link_to experimento.plantas.count.to_s, experimento_plantas_path(experimento) %>
+              <%= link_to 'Plantas Associadas: ' + experimento.plantas.count.to_s, experimento_plantas_path(experimento) %>
             </td>
           <% end %>
         </tr>

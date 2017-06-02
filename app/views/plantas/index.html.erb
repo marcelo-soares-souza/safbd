@@ -1,12 +1,17 @@
 <% if ! @plantas.empty? %>
 <ul class="nav nav-tabs">
   <li class="nav-item">
-    <%= link_to t(:all), plantas_path, :class => "nav-link active" %>
+    <%= link_to t(:all), plantas_path, :class => "nav-link #{if request.path == "/plantas" then 'active' end }" %>
   </li>
   <% if user_signed_in? %>
     <li class="nav-item">
       <%= link_to t(:new), new_planta_path, :class => "nav-link" %>
     </li>
+  <% end %>
+  <% if request.path != "/plantas" %>
+    <li class="nav-item">
+      <%= link_to 'Plantas do ' + Experimento.friendly.find(params[:experimento_id]).nome, '#', :class => "nav-link active" %>
+  </li>
   <% end %>
 </ul>
 

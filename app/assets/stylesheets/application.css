@@ -14,6 +14,16 @@
  *= require_self
  */
 
+b a, b a:visited, b a:hover {
+  font-size: 16px;
+  color: #90AD34;
+}
+
+a,  a:visited {
+  font-size: 14px;
+  color: #0078a8;
+}
+
 .starter-template {
   text-align: center;
 }
