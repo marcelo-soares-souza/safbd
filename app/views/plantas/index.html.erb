@@ -35,8 +35,10 @@
         <tr>
           <% p.each do |planta| %>
             <td class="list">
-              <%= link_to image_tag(planta.imagem.url(:thumb), :width => "180"), planta_path(planta) %>
-              <br/><br/>
+              <div class="img-grid">
+                <%= link_to image_tag(planta.imagem.url(:thumb), :width => "180"), planta_path(planta) %>
+              </div>
+              <br/>
               <b><%= link_to planta.nome, planta_path(planta) %></b>
             </td>
           <% end %>

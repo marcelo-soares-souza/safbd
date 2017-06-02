@@ -16,9 +16,7 @@
 
 <div class="tab-content">
   <div class="tab-pane active">
-    <%= image_tag(@planta.imagem.url(:medium)) %>
-    <br/><br/>
-
+    <%= image_tag(@planta.imagem.url(:medium), :height => "150px") %><br/><br/>
     <dl class="row">
       <dt class="col-sm-3"><strong>Nome:</strong></dt>
       <dd class="col-sm-9"><%= @planta.nome %>&nbsp;</dd>

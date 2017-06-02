@@ -36,8 +36,10 @@
         <tr>
           <% p.each do |experimento| %>
             <td class="list">
-              <%= link_to image_tag(experimento.imagem.url(:thumb), :width => "180"), experimento_path(experimento) %>
-              <br/><br/>
+              <div class="img-grid">
+                <%= link_to image_tag(experimento.imagem.url(:thumb), :width => "180"), experimento_path(experimento) %>
+              </div>
+              <br/>
               <b><%= link_to experimento.nome + " (" + experimento.sistema.nome + ")", experimento_path(experimento) %></b>
               <br/>
               <%= link_to 'Plantas Associadas: ' + experimento.plantas.count.to_s, experimento_plantas_path(experimento) %>

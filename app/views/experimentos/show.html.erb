@@ -25,14 +25,34 @@
 
       <dt class="col-sm-3"><strong>Descrição:</strong></dt>
       <dd class="col-sm-9"><%= @experimento.descricao %>&nbsp;</dd>
-
-      <% if @experimento.plantas.count > 0 %>
-        <dt class="col-sm-3"><strong>Plantas:</strong></dt>
-        <dd class="col-sm-9">
-         <%= @experimento.plantas.map {|planta| link_to planta.nome, planta_path(planta)}.join(", ").html_safe %>&nbsp;
-        </dd>
-      <% end %>
     </dl>
+
+    <% if @experimento.plantas.count > 0 %>
+    <div class="col-form-label-lg">Plantas Associadas</div>
+    <div class="form-group row">
+    <div class="tab-content">
+      <div class="tab-pane active"><br/>
+        <table class="table table-responsive">
+          <tbody>
+            <% @experimento.plantas.each_slice(5) do |p| %>
+            <tr>
+              <% p.each do |planta| %>
+                <td class="list">
+                  <div class="img-grid">
+                    <%= link_to image_tag(planta.imagem.url(:thumb), :height => "100"), planta_path(planta) %>
+                  </div>
+                  <br/>
+                  <b><%= link_to planta.nome, planta_path(planta) %></b>
+                </td>
+              <% end %>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    </div>
+    <% end %>
 
     <hr/>
     <% if user_signed_in? %>

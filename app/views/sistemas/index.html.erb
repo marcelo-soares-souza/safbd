@@ -31,8 +31,10 @@
         <tr>
           <% p.each do |sistema| %>
             <td class="list">
-              <%= link_to image_tag(sistema.imagem.url(:thumb), :width => "180"), sistema_path(sistema) %>
-              <br/><br/>
+              <div class="img-grid">
+                <%= link_to image_tag(sistema.imagem.url(:thumb), :width => "180"), sistema_path(sistema) %>
+              </div>
+              <br/>
               <b><%= link_to sistema.nome, sistema_path(sistema) %></b>
               <br/>
               <%= link_to 'Experimentos Registrados: ' + sistema.experimentos.count.to_s, sistema_experimentos_path(sistema) %>
