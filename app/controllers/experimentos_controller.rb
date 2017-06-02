@@ -7,7 +7,13 @@ class ExperimentosController < ApplicationController
   # GET /experimentos
   # GET /experimentos.json
   def index
-    @experimentos = Experimento.all
+    if params[:sistema_id]
+      @experimentos = Sistema.friendly.find(params[:sistema_id]).experimentos
+    elsif params[:planta_id]
+      @experimentos = Planta.friendly.find(params[:planta_id]).experimentos
+    else
+      @experimentos = Experimento.all
+    end
   end
 
   # GET /experimentos/1

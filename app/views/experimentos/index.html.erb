@@ -21,6 +21,8 @@
               <%= link_to image_tag(experimento.imagem.url(:thumb), :width => "180"), experimento_path(experimento) %>
               <br/><br/>
               <b><%= link_to experimento.nome + " (" + experimento.sistema.nome + ")", experimento_path(experimento) %></b>
+              <br/>
+              Plantas: <%= link_to experimento.plantas.count.to_s, experimento_plantas_path(experimento) %>
             </td>
           <% end %>
         </tr>

@@ -6,7 +6,11 @@ class PlantasController < ApplicationController
   # GET /plantas
   # GET /plantas.json
   def index
-    @plantas = Planta.all
+    if params[:experimento_id]
+      @plantas = Experimento.friendly.find(params[:experimento_id]).plantas
+    else
+      @plantas = Planta.all
+    end
   end
 
   # GET /plantas/1

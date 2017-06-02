@@ -7,7 +7,7 @@ class SistemasController < ApplicationController
   # GET /sistemas
   # GET /sistemas.json
   def index
-    @sistemas = Sistema.all
+    @sistemas = Sistema.all  
   end
 
   # GET /sistemas/1

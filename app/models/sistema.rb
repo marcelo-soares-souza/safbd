@@ -6,6 +6,7 @@ class Sistema < ApplicationRecord
   validates :imagem, :presence => true
 
   has_many :experimentos
+  has_many :plantas, through: :experimentos
   belongs_to :user
 
   # geocoded_by :localization

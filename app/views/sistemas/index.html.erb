@@ -20,7 +20,9 @@
             <td class="list">
               <%= link_to image_tag(sistema.imagem.url(:thumb), :width => "180"), sistema_path(sistema) %>
               <br/><br/>
-              <b><%= link_to sistema.nome + " (" + sistema.experimentos.count.to_s + ")", sistema_path(sistema) %></b>
+              <b><%= link_to sistema.nome, sistema_path(sistema) %></b>
+              <br/>
+              Experimentos: <%= link_to sistema.experimentos.count.to_s, sistema_experimentos_path(sistema) %>
             </td>
           <% end %>
         </tr>
