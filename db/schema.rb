@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170602122741) do
+ActiveRecord::Schema.define(version: 20170602212906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,9 @@ ActiveRecord::Schema.define(version: 20170602122741) do
     t.string "imagem_content_type"
     t.integer "imagem_file_size"
     t.datetime "imagem_updated_at"
+    t.date "inicio"
+    t.date "fim"
+    t.string "fase"
     t.index ["sistema_id"], name: "index_experimentos_on_sistema_id"
     t.index ["slug"], name: "index_experimentos_on_slug", unique: true
   end

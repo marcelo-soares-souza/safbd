@@ -7,7 +7,7 @@ class Experimento < ApplicationRecord
   has_many :plantas, through: :experimento_plantas
   accepts_nested_attributes_for :experimento_plantas, allow_destroy: true
 
-  has_attached_file :imagem, styles: { medium: "360x360>", thumb: "180x180>" }, default_url: "/images/experimentos/:style/missing.png"
+  has_attached_file :imagem, styles: { medium: "360x360>", thumb: "180x180>" }, default_url: "/assets/missing.png"
   validates_attachment_content_type :imagem, content_type: /\Aimage\/.*\z/
 
   protected

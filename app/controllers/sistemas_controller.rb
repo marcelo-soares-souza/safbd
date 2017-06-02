@@ -2,7 +2,7 @@ class SistemasController < ApplicationController
   before_action :set_sistema, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
   before_action only: [:edit, :update, :destroy] { check_owner Sistema.friendly.find(params[:id]).user_id }
-  before_action :load_ufs
+  before_action :load_ufs, except: [:index]
 
   # GET /sistemas
   # GET /sistemas.json

@@ -4,6 +4,7 @@ class ExperimentosController < ApplicationController
   before_action only: [:edit, :update, :destroy] { check_owner Experimento.friendly.find(params[:id]).sistema.user_id }
   before_action :load_sistemas, except: [:index]
   before_action :load_plantas, except: [:index]
+  before_action :load_fases
 
   # GET /experimentos
   # GET /experimentos.json
@@ -90,6 +91,10 @@ class ExperimentosController < ApplicationController
       @plantas = Planta.all
     end
 
+    def load_fases
+      @fases = { "Planejamento" => "Planejamento", "Em Progresso" => "Em Progresso", "Finalizado" => "Finalizado" }
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_experimento
       @experimento = Experimento.friendly.find(params[:id])
@@ -97,6 +102,6 @@ class ExperimentosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def experimento_params
-      params.require(:experimento).permit(:nome, :descricao, :slug, :sistema_id, :imagem, :experimento_id, planta_ids: [])
+      params.require(:experimento).permit(:nome, :descricao, :slug, :sistema_id, :imagem, :inicio, :fim, :fase, :experimento_id, planta_ids: [])
     end
 end

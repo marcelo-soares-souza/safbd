@@ -34,6 +34,27 @@
     </div>
 
     <div class="form-group row">
+      <%= form.label "Fase", class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-8">
+        <%= form.collection_select(:fase, @fases, :last, :first, {}, { class: "form-control" } ) %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= form.label "Início", class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-8">
+        <%= form.date_field :inicio, value: l(form.object.inicio || Date.today), placeholder: "DD/MM/YYYY", class: "form-control", data: { provide: "datepicker" } %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= form.label "Fim", class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-8">
+        <%= form.date_field :fim, value: l(form.object.fim || Date.today), placeholder: "DD/MM/YYYY", class: "form-control", data: { provide: "datepicker" } %>
+      </div>
+    </div>
+
+    <div class="form-group row">
       <%= form.label "Descrição", class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-8">
         <%= form.text_field :descricao, class: "form-control" %>
