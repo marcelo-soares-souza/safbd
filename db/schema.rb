@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170601182452) do
+ActiveRecord::Schema.define(version: 20170602122741) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "experimento_plantas", force: :cascade do |t|
+    t.bigint "experimento_id"
+    t.bigint "planta_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["experimento_id"], name: "index_experimento_plantas_on_experimento_id"
+    t.index ["planta_id"], name: "index_experimento_plantas_on_planta_id"
+  end
 
   create_table "experimentos", force: :cascade do |t|
     t.string "nome"
@@ -98,6 +107,8 @@ ActiveRecord::Schema.define(version: 20170601182452) do
     t.index ["slug"], name: "index_users_on_slug", unique: true
   end
 
+  add_foreign_key "experimento_plantas", "experimentos"
+  add_foreign_key "experimento_plantas", "plantas"
   add_foreign_key "experimentos", "sistemas"
   add_foreign_key "plantas", "users"
   add_foreign_key "sistemas", "users"

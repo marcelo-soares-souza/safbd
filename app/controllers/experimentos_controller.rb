@@ -18,10 +18,14 @@ class ExperimentosController < ApplicationController
   # GET /experimentos/new
   def new
     @experimento = Experimento.new
+    @plantas = Planta.all
+    @experimento.experimento_plantas.build
   end
 
   # GET /experimentos/1/edit
   def edit
+    @plantas = Planta.all
+    @experimento.experimento_plantas.build
   end
 
   # POST /experimentos
@@ -79,6 +83,6 @@ class ExperimentosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def experimento_params
-      params.require(:experimento).permit(:nome, :descricao, :slug, :sistema_id, :imagem)
+      params.require(:experimento).permit(:nome, :descricao, :slug, :sistema_id, :imagem, :experimento_id, :planta_ids => [])
     end
 end
