@@ -7,7 +7,7 @@ class ExperimentosController < ApplicationController
   # GET /experimentos
   # GET /experimentos.json
   def index
-    @experimentos = Experimento.all
+    @experimentos = Experimento.all.order("nome ASC")
 
     if params[:search]
       @experimentos = Experimento.search(params[:search]).order("nome ASC")

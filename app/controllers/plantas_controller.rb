@@ -6,7 +6,7 @@ class PlantasController < ApplicationController
   # GET /plantas
   # GET /plantas.json
   def index
-    @plantas = Planta.all
+    @plantas = Planta.all.order("nome ASC")
 
     if params[:search]
       @plantas = Planta.search(params[:search]).order("nome ASC")

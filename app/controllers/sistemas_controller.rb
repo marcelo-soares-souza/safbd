@@ -10,7 +10,7 @@ class SistemasController < ApplicationController
     if params[:search]
       @sistemas = Sistema.search(params[:search]).order("nome ASC")
     else
-      @sistemas = Sistema.all
+      @sistemas = Sistema.all.order("nome ASC")
     end
   end
 

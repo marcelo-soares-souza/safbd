@@ -31,6 +31,11 @@
                 <%= link_to("Usuários", users_path, :class => "nav-link") %>
               </li>
             <% end %>
+          <% end %>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <% if current_user %>
             <li class="nav-item">
               <%= link_to("#{t(:logout)}", destroy_user_session_path, :method => :delete, :class => "nav-link") %>
             </li>
@@ -38,12 +43,6 @@
             <li class="nav-item">
               <%= link_to "(#{current_user.email})", user_path(current_user), :class => "nav-link" %>
             </li>
-
-            <!--
-            <li class="nav-item">
-              <%= link_to(image_tag(Gravatar.new(current_user.email).image_url, :size => "25x25") + " (#{current_user.email})", user_path(current_user), :class => "nav-link") %>
-            </li>
-            -->
           <% else %>
             <li class="nav-item">
               <%= link_to(t(:login), new_user_session_path, :class => "nav-link") %>

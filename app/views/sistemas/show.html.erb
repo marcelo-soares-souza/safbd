@@ -1,3 +1,13 @@
+<% if user_signed_in? %>
+  <% if current_user.admin? or current_user.id == @sistema.user_id %>
+    <div class="form-actions" style="float: right;">
+      <%= link_to "Cadastrar Experimento deste Sistema", new_sistema_experimento_path(@sistema), :class => 'btn btn-primary'  %>
+    </div>
+  <br/><br/><br/>
+  <% end %>
+<% end %>
+
+
 <ul class="nav nav-tabs">
   <li class="nav-item">
     <%= link_to t(:all), sistemas_path, :class => "nav-link" %>

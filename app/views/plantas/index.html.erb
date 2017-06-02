@@ -1,7 +1,6 @@
-<% if ! @plantas.empty? %>
 <ul class="nav nav-tabs">
   <li class="nav-item">
-    <%= link_to t(:all), plantas_path, :class => "nav-link #{if request.path == "/plantas" then 'active' end }" %>
+    <%= link_to t(:all), plantas_path, :class => "nav-link #{if (request.path == "/plantas" && request.parameters["search"].blank?) then 'active' end }" %>
   </li>
   <% if user_signed_in? %>
     <li class="nav-item">
@@ -13,8 +12,12 @@
       <%= link_to 'Plantas do ' + Experimento.friendly.find(params[:experimento_id]).nome, '#', :class => "nav-link active" %>
   </li>
   <% end %>
+  <% if ! request.parameters["search"].blank? %>
+    <li class="nav-item">
+      <%= link_to 'Buscando por ' + request.parameters["search"], '#', :class => "nav-link active" %>
+    </li>
+  <% end %>
 </ul>
-
 <br/>
 <div class="search-box" style="float: right;">
   <%= form_tag(plantas_path, :method => "get", id: "search-form") do %>
@@ -23,6 +26,7 @@
   <% end %>
 </div>
 
+<% if ! @plantas.empty? %>
 <div class="tab-content">
   <div class="tab-pane active"><br/>
     <table class="table table-responsive">
@@ -43,6 +47,6 @@
   </div>
 </div>
 <% else %>
-  <br/><br/>
-  <h3>Nenhum Registro Encontrado. <%= link_to 'Cadastrar?', new_planta_path %></h3>
+  <br/><br/><br/>
+  <h3>Nenhum Registro Encontrado. Deseja <%= link_to 'Cadastrar?', new_planta_path %></h3>
 <% end %>
