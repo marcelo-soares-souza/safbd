@@ -1,7 +1,7 @@
 <% if ! @experimentos.empty? %>
 <ul class="nav nav-tabs">
   <li class="nav-item">
-    <%= link_to t(:all), experimentos_path, :class => "nav-link #{if request.path == "/experimentos" then 'active' end }" %>
+    <%= link_to t(:all), experimentos_path, :class => "nav-link #{if (request.path == "/experimentos" && request.parameters["search"].blank?) then 'active' end }" %>
   </li>
   <% if user_signed_in? %>
     <li class="nav-item">
@@ -12,6 +12,11 @@
     <li class="nav-item">
       <%= link_to 'Experimentos do ' + Sistema.friendly.find(params[:sistema_id]).nome, '#', :class => "nav-link active" %>
   </li>
+  <% end %>
+  <% if ! request.parameters["search"].blank? %>
+  <li class="nav-item">
+    <%= link_to 'Buscando por ' + request.parameters["search"], '#', :class => "nav-link active" %>
+</li>
   <% end %>
 </ul>
 

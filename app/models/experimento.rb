@@ -16,6 +16,6 @@ class Experimento < ApplicationRecord
   end
 
   def self.search(search)
-    where("nome ILIKE ?", "%#{search}%")
+    Experimento.joins(:sistema).where("experimentos.nome || sistemas.nome ILIKE ?", "%#{search}%")
   end
 end
