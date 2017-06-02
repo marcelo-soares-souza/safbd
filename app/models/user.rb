@@ -4,7 +4,7 @@ class User < ApplicationRecord
   extend FriendlyId
   friendly_id :fullname, use: :slugged
 
-  validates :fullname, :presence => true
+  validates :fullname, presence: true
 
   def should_generate_new_friendly_id?
     fullname_changed?

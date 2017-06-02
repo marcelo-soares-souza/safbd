@@ -15,7 +15,6 @@ class PlantasController < ApplicationController
         @plantas = Experimento.friendly.find(params[:experimento_id]).plantas
       end
     end
-
   end
 
   # GET /plantas/1
@@ -40,7 +39,7 @@ class PlantasController < ApplicationController
 
     respond_to do |format|
       if @planta.save
-        format.html { redirect_to @planta, notice: 'Planta was successfully created.' }
+        format.html { redirect_to @planta, notice: "Planta was successfully created." }
         format.json { render :show, status: :created, location: @planta }
       else
         format.html { render :new }
@@ -54,7 +53,7 @@ class PlantasController < ApplicationController
   def update
     respond_to do |format|
       if @planta.update(planta_params)
-        format.html { redirect_to @planta, notice: 'Planta was successfully updated.' }
+        format.html { redirect_to @planta, notice: "Planta was successfully updated." }
         format.json { render :show, status: :ok, location: @planta }
       else
         format.html { render :edit }
@@ -68,7 +67,7 @@ class PlantasController < ApplicationController
   def destroy
     @planta.destroy
     respond_to do |format|
-      format.html { redirect_to plantas_url, notice: 'Planta was successfully destroyed.' }
+      format.html { redirect_to plantas_url, notice: "Planta was successfully destroyed." }
       format.json { head :no_content }
     end
   end

@@ -1,1 +1,1 @@
-json.array! @plantas, partial: 'plantas/planta', as: :planta
+json.array! @plantas, partial: "plantas/planta", as: :planta

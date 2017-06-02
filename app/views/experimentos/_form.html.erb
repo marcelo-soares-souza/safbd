@@ -19,7 +19,7 @@
       <div class="col-sm-10">
         <% if (params[:sistema_id] && (current_user.admin? or Sistema.friendly.find(params[:sistema_id]).user.id == current_user.id)) %>
           <b>Sistema <%= Sistema.friendly.find(params[:sistema_id]).nome %></b>
-          <%= form.hidden_field :sistema_id, id: Sistema.friendly.find(params[:sistema_id]).id %>
+          <%= form.hidden_field :sistema_id, value: Sistema.friendly.find(params[:sistema_id]).id %>
         <% else %>
           <%= form.collection_select(:sistema_id, @sistemas, :id, :nome,  {}, { class: "form-control" } ) %>
         <% end %>
@@ -50,7 +50,11 @@
     <div class="form-group row">
       <%= form.label 'Plantas Associadas', class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
-        <%= form.collection_select(:planta_ids, @plantas, :id, :nome,  { include_hidden: false }, { class: "form-control", multiple: true } ) %>
+        <% if ! @plantas.empty? %>
+          <%= form.collection_select(:planta_ids, @plantas, :id, :nome,  { include_hidden: false }, { class: "form-control", multiple: true } ) %>
+        <% else %>
+          <b>Não há Plantas Registradas. Deseja <%= link_to "Cadastrar?", new_planta_path, :target => "blank"%></b>
+        <% end %>
       </div>
     </div>
 

@@ -36,7 +36,7 @@ class SistemasController < ApplicationController
 
     respond_to do |format|
       if @sistema.save
-        format.html { redirect_to @sistema, notice: 'Sistema was successfully created.' }
+        format.html { redirect_to @sistema, notice: "Sistema was successfully created." }
         format.json { render :show, status: :created, location: @sistema }
       else
         format.html { render :new }
@@ -50,7 +50,7 @@ class SistemasController < ApplicationController
   def update
     respond_to do |format|
       if @sistema.update(sistema_params)
-        format.html { redirect_to @sistema, notice: 'Sistema was successfully updated.' }
+        format.html { redirect_to @sistema, notice: "Sistema was successfully updated." }
         format.json { render :show, status: :ok, location: @sistema }
       else
         format.html { render :edit }
@@ -64,7 +64,7 @@ class SistemasController < ApplicationController
   def destroy
     @sistema.destroy
     respond_to do |format|
-      format.html { redirect_to sistemas_url, notice: 'Sistema was successfully destroyed.' }
+      format.html { redirect_to sistemas_url, notice: "Sistema was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -73,7 +73,6 @@ class SistemasController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_sistema
       @sistema = Sistema.friendly.find(params[:id])
-
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

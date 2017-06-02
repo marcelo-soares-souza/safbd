@@ -1,1 +1,1 @@
-json.array! @sistemas, partial: 'sistemas/sistema', as: :sistema
+json.array! @sistemas, partial: "sistemas/sistema", as: :sistema

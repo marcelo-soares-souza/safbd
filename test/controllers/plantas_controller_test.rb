@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class PlantasControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -16,7 +16,7 @@ class PlantasControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create planta" do
-    assert_difference('Planta.count') do
+    assert_difference("Planta.count") do
       post plantas_url, params: { planta: { descricao: @planta.descricao, nome: @planta.nome, slug: @planta.slug, user_id: @planta.user_id } }
     end
 
@@ -39,7 +39,7 @@ class PlantasControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy planta" do
-    assert_difference('Planta.count', -1) do
+    assert_difference("Planta.count", -1) do
       delete planta_url(@planta)
     end
 

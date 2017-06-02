@@ -3,6 +3,7 @@ class ExperimentosController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
   before_action only: [:edit, :update, :destroy] { check_owner Experimento.friendly.find(params[:id]).sistema.user_id }
   before_action :load_sistemas, except: [:index]
+  before_action :load_plantas, except: [:index]
 
   # GET /experimentos
   # GET /experimentos.json
@@ -28,7 +29,6 @@ class ExperimentosController < ApplicationController
   # GET /experimentos/new
   def new
     @experimento = Experimento.new
-    @plantas = Planta.all
     @experimento.experimento_plantas.build
   end
 
@@ -45,7 +45,7 @@ class ExperimentosController < ApplicationController
 
     respond_to do |format|
       if @experimento.save
-        format.html { redirect_to @experimento, notice: 'Experimento was successfully created.' }
+        format.html { redirect_to @experimento, notice: "Experimento was successfully created." }
         format.json { render :show, status: :created, location: @experimento }
       else
         format.html { render :new }
@@ -59,7 +59,7 @@ class ExperimentosController < ApplicationController
   def update
     respond_to do |format|
       if @experimento.update(experimento_params)
-        format.html { redirect_to @experimento, notice: 'Experimento was successfully updated.' }
+        format.html { redirect_to @experimento, notice: "Experimento was successfully updated." }
         format.json { render :show, status: :ok, location: @experimento }
       else
         format.html { render :edit }
@@ -73,7 +73,7 @@ class ExperimentosController < ApplicationController
   def destroy
     @experimento.destroy
     respond_to do |format|
-      format.html { redirect_to experimentos_url, notice: 'Experimento was successfully destroyed.' }
+      format.html { redirect_to experimentos_url, notice: "Experimento was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -86,6 +86,10 @@ class ExperimentosController < ApplicationController
       end
     end
 
+    def load_plantas
+      @plantas = Planta.all
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_experimento
       @experimento = Experimento.friendly.find(params[:id])
@@ -93,6 +97,6 @@ class ExperimentosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def experimento_params
-      params.require(:experimento).permit(:nome, :descricao, :slug, :sistema_id, :imagem, :experimento_id, :planta_ids => [])
+      params.require(:experimento).permit(:nome, :descricao, :slug, :sistema_id, :imagem, :experimento_id, planta_ids: [])
     end
 end

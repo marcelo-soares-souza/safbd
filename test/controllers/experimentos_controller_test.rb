@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class ExperimentosControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -16,7 +16,7 @@ class ExperimentosControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create experimento" do
-    assert_difference('Experimento.count') do
+    assert_difference("Experimento.count") do
       post experimentos_url, params: { experimento: { descricao: @experimento.descricao, nome: @experimento.nome, sistema_id: @experimento.sistema_id, slug: @experimento.slug } }
     end
 
@@ -39,7 +39,7 @@ class ExperimentosControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy experimento" do
-    assert_difference('Experimento.count', -1) do
+    assert_difference("Experimento.count", -1) do
       delete experimento_url(@experimento)
     end
 
