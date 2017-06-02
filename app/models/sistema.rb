@@ -29,4 +29,8 @@ class Sistema < ApplicationRecord
   end
 
   UF = [ 'Acre' => 'AC', 'Alagoas' => 'AL' ]
+
+  def self.search(search)
+    where("nome ILIKE ?", "%#{search}%")
+  end
 end

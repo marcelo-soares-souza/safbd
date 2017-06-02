@@ -14,4 +14,8 @@ class Experimento < ApplicationRecord
   def should_generate_new_friendly_id?
     nome_changed?
   end
+
+  def self.search(search)
+    where("nome ILIKE ?", "%#{search}%")
+  end
 end

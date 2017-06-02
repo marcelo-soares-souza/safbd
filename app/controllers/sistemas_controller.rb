@@ -7,7 +7,11 @@ class SistemasController < ApplicationController
   # GET /sistemas
   # GET /sistemas.json
   def index
-    @sistemas = Sistema.all  
+    if params[:search]
+      @sistemas = Sistema.search(params[:search]).order("nome ASC")
+    else
+      @sistemas = Sistema.all
+    end
   end
 
   # GET /sistemas/1

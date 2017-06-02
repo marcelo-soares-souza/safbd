@@ -3,6 +3,10 @@ class HomeController < ApplicationController
   end
 
   def mapa
-    @sistemas = Sistema.all.order('nome ASC')
+    if params[:search]
+      @sistemas = Sistema.search(params[:search]).order("nome ASC")
+    else
+      @sistemas = Sistema.all.order('nome ASC')
+    end
   end
 end

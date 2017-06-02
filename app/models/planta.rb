@@ -15,4 +15,7 @@ class Planta < ApplicationRecord
     nome_changed?
   end
 
+  def self.search(search)
+    where("nome ILIKE ?", "%#{search}%")
+  end
 end
