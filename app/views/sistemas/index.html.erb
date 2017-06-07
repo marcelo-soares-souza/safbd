@@ -1,3 +1,10 @@
+<div class="search-box">
+  <%= form_tag(sistemas_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], :size => 16 %>
+    <%= submit_tag "Buscar", class: "btn btn-primary btn-sm" %>
+  <% end %>
+</div>
+<br/><br/>
 <ul class="nav nav-tabs">
   <li class="nav-item">
     <%= link_to t(:all), sistemas_path, :class => "nav-link #{if (request.path == "/sistemas" && request.parameters["search"].blank?) then 'active' end }" %>
@@ -13,21 +20,12 @@
     </li>
   <% end %>
 </ul>
-
-<br/>
-<div class="search-box" style="float: right;">
-  <%= form_tag(sistemas_path, :method => "get", id: "search-form") do %>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Buscar", class: "btn btn-primary btn-sm" %>
-  <% end %>
-</div>
-
 <% if ! @sistemas.empty? %>
 <div class="tab-content">
   <div class="tab-pane active"><br/>
     <table class="table table-responsive">
       <tbody>
-        <% @sistemas.each_slice(5) do |p| %>
+        <% @sistemas.each_slice(7) do |p| %>
         <tr>
           <% p.each do |sistema| %>
             <td class="list">

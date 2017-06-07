@@ -1,10 +1,10 @@
-<div class="search-box">
-  <%= form_tag(home_mapa_path, :method => "get", id: "search-form") do %>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Buscar", class: "btn btn-primary btn-sm" %>
-  <% end %>
-</div>
-<br/>
+  <div>
+    <%= form_tag(home_mapa_path, :method => "get", id: "search-form") do %>
+      <%= text_field_tag :search, params[:search], :size => 16 %>
+      <%= submit_tag "Buscar", class: "btn btn-primary btn-sm" %>
+    <% end %>
+  </div>
+  <br/>
 
   <style>
     .container {
