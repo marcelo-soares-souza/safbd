@@ -2,6 +2,8 @@ class Planta < ApplicationRecord
   extend FriendlyId
   friendly_id :nome, use: :slugged
 
+  validates :nome, presence: true
+
   belongs_to :user
   has_many :experimento_plantas, dependent: :nullify
   has_many :experimentos, through: :experimento_plantas

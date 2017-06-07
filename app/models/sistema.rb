@@ -3,6 +3,8 @@ class Sistema < ApplicationRecord
   friendly_id :nome, use: :slugged
 
   validates :nome, presence: true
+  validates :cidade, presence: true
+  validates :uf, presence: true
   validates :imagem, presence: true
 
   has_many :experimentos

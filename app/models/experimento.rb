@@ -2,6 +2,9 @@ class Experimento < ApplicationRecord
   extend FriendlyId
   friendly_id :nome, use: :slugged
 
+  validates :nome, presence: true
+  validates :fase, presence: true
+
   belongs_to :sistema
   has_many :experimento_plantas, dependent: :destroy
   has_many :plantas, through: :experimento_plantas

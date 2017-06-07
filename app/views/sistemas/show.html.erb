@@ -33,12 +33,20 @@
       <% if @sistema.experimentos.count > 0 %>
         <dt class="col-sm-3"><strong>Experimentos:</strong></dt>
         <dd class="col-sm-9">
-         <%= @sistema.experimentos.map {|experimento| link_to experimento.nome, experimento_path(experimento)}.join(", ").html_safe %>&nbsp;
+          <%= @sistema.experimentos.map {|experimento| link_to experimento.nome, experimento_path(experimento)}.join(", ").html_safe %>&nbsp;
         </dd>
+        <% if @sistema.plantas.count > 0 %>
+          <dt class="col-sm-3"><strong>Plantas:</strong></dt>
+          <dd class="col-sm-9">
+            <%= @sistema.plantas.map {|planta| link_to planta.nome, planta_path(planta)}.join(", ").html_safe %>&nbsp;
+          </dd>
+        <% end %>
       <% end %>
 
-      <dt class="col-sm-3"><strong>Logradouro:</strong></dt>
-      <dd class="col-sm-9"><%= @sistema.logradouro %>&nbsp;</dd>
+      <% if !@sistema.logradouro.blank? %>
+        <dt class="col-sm-3"><strong>Logradouro:</strong></dt>
+        <dd class="col-sm-9"><%= @sistema.logradouro %>&nbsp;</dd>
+      <% end %>
 
       <dt class="col-sm-3"><strong>Cidade:</strong></dt>
       <dd class="col-sm-9"><%= @sistema.cidade %>&nbsp;</dd>
@@ -46,11 +54,16 @@
       <dt class="col-sm-3"><strong>UF:</strong></dt>
       <dd class="col-sm-9"><%= @sistema.uf %>&nbsp;</dd>
 
-      <dt class="col-sm-3"><strong>CEP:</strong></dt>
-      <dd class="col-sm-9"><%= @sistema.cep %>&nbsp;</dd>
+      <% if !@sistema.cep.blank? %>
+        <dt class="col-sm-3"><strong>CEP:</strong></dt>
+        <dd class="col-sm-9"><%= @sistema.cep %>&nbsp;</dd>
+      <% end %>
 
-      <dt class="col-sm-3"><strong>Descrição:</strong></dt>
-      <dd class="col-sm-9"><%= @sistema.descricao %>&nbsp;</dd>
+      <% if !@sistema.descricao.blank? %>
+        <dt class="col-sm-3"><strong>Descrição:</strong></dt>
+        <dd class="col-sm-9"><%= @sistema.descricao %>&nbsp;</dd>
+      <% end %>
+
       <dt class="col-sm-3"><strong>Responsável:</strong></dt>
       <dd class="col-sm-9"><%= @sistema.user.fullname %>&nbsp;</dd>
     </dl>
