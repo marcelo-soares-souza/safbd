@@ -31,9 +31,10 @@
 
       <dt class="col-sm-3"><strong>Fase:</strong></dt>
       <dd class="col-sm-9"><%= @experimento.fase %>&nbsp;</dd>
-
-      <dt class="col-sm-3"><strong>Descrição:</strong></dt>
-      <dd class="col-sm-9"><%= @experimento.descricao %>&nbsp;</dd>
+      <% if !@experimento.descricao.blank? %>
+        <dt class="col-sm-3"><strong>Descrição:</strong></dt>
+        <dd class="col-sm-9"><%= @experimento.descricao %>&nbsp;</dd>
+      <% end %>
     </dl>
 
     <% if @experimento.plantas.count > 0 %>
