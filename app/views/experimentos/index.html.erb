@@ -14,7 +14,7 @@
       <%= link_to t(:new), new_experimento_path, :class => "nav-link" %>
     </li>
   <% end %>
-  <% if request.path != "/experimentos" %>
+  <% if request.path == "/sistemas/#{params[:sistema_id]}/experimentos" %>
     <li class="nav-item">
       <%= link_to 'Experimentos do ' + Sistema.friendly.find(params[:sistema_id]).nome, '#', :class => "nav-link active" %>
   </li>
@@ -30,7 +30,7 @@
   <div class="tab-pane active"><br/>
     <table class="table table-responsive">
       <tbody>
-        <% @experimentos.each_slice(7) do |p| %>
+        <% @experimentos.each_slice(5) do |p| %>
         <tr>
           <% p.each do |experimento| %>
             <td class="list">
@@ -38,7 +38,9 @@
                 <%= link_to image_tag(experimento.imagem.url(:thumb), :width => "180"), experimento_path(experimento) %>
               </div>
               <br/>
-              <b><%= link_to experimento.nome + " (" + experimento.sistema.nome + ")", experimento_path(experimento) %></b>
+              <b><%= link_to experimento.nome, experimento_path(experimento) %></b>
+              <br/>
+              <%= link_to experimento.sistema.nome, sistema_path(experimento.sistema) %>
               <br/>
               <%= link_to 'Plantas Associadas: ' + experimento.plantas.count.to_s, experimento_plantas_path(experimento) %>
             </td>
